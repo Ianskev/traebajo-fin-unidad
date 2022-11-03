@@ -21,11 +21,10 @@ class Libro:
     def __del__(self):
         return None
     
-    #3
-    def agregar_libro(self):
-        print("Libro agregado")
+    #1
+    def leer_libro(self):
         libro = open(f'database/{id}.txt','r')
         libro = libro.readlines()
 
 libro = Libro(12345,"El caminante y su sombra","Drama", 12345678,"Laeditoral","Alberth Camus")
-libro.agregar_libro()
+libro.leer_libro()
