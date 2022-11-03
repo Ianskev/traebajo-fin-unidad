@@ -20,3 +20,12 @@ class Libro:
     
     def __del__(self):
         return None
+    
+    #3
+    def agregar_libro(self):
+        print("Libro agregado")
+        libro = open(f'database/{id}.txt','r')
+        libro = libro.readlines()
+
+libro = Libro(12345,"El caminante y su sombra","Drama", 12345678,"Laeditoral","Alberth Camus")
+libro.agregar_libro()
