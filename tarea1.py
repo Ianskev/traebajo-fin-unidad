@@ -33,26 +33,8 @@ def lista_libr():
     for elem in lista_de_libros:
         for k,v in elem.items():
             print(k, v)
-leer_archivos("tarea_final.txt")
-lista_libr()
-            id = columnas[0]
-            titulo = columnas[1]
-            genero = columnas[2]
-            isbn = columnas[3]
-            editorial = columnas[4]
-            autor = columnas[5]
-            dic.append({
-            "id": id,
-            "titulo": titulo,
-            "genero": genero,
-            "isbn": isbn,
-            "editorial": editorial,
-            "autor":autor})
-        return dic
-
 def main():
     print("Bienvenidos")
     print("Opcion 3")
-
-main()
-print(obtener_csv_como_lista_de_diccionarios("tarea_final.txt"))
+leer_archivos("tarea_final.txt")
+lista_libr()
