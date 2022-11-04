@@ -22,27 +22,19 @@ class Libro:
     
     def __del__(self):
         return None
-    
-    #Opcion 3
-    def agregar_libro(self):
-        with open(file_name+".csv", 'a', newline='\n') as file:
-            def ingresar_libro():
-                estructura = ['id', 'titulo','genero', 'editorial', 'autor']
-                for iterador in estructura:
-                    iterador = input(f'Ingrese {iterador}: ')
-                    add_list.append(iterador)
-                
-                add.writerow(add_list)
-ingresar_libro()
 
-
-def obtener_csv_como_lista_de_diccionarios(nombre_archivo):
-    separador = ","
-    with open(nombre_archivo, encoding="utf-8") as archivo:
-        dic = []
-        for linea in archivo:
-            linea = linea.rstrip("\n")
-            columnas = linea.split(separador)
+lista_de_libros = []
+def leer_archivos(nombre_archivo):
+    with open(nombre_archivo, newline='', encoding='utf-8') as f:
+        rows = csv.DictReader(f)
+        for r in rows:
+            lista_de_libros.append(r)
+def lista_libr():
+    for elem in lista_de_libros:
+        for k,v in elem.items():
+            print(k, v)
+leer_archivos("tarea_final.txt")
+lista_libr()
             id = columnas[0]
             titulo = columnas[1]
             genero = columnas[2]
