@@ -3,29 +3,6 @@ import os
 import time
 
 libros_dict = {
-    '123':{
-        'titulo': 'God is dead',
-        'genero': 'drama',
-        'isbn': '21312321421',
-        'editorial':'Navarete',
-        'autor':'Nietzche'
-        },
-
-    '777':{
-        'titulo':'titulo2',
-        'genero':'genero2',
-        'isbn':'isbn2',
-        'editorial':'editorial2',
-        'autor': ['autor2.1','autor2.2']
-        },
-
-    '111':{
-        'titulo':'titulo3',
-        'genero':'genero3',
-        'isbn':'isbn3',
-        'editorial':'editorial3',
-        'autor':'autor3'
-        }
 
 }
 
