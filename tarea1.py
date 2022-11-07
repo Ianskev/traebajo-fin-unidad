@@ -272,6 +272,15 @@ def searchBookByAutorEditorialGenre():
                     print(*row)
                     break
     repeatOptions()
+    
+#OPCION 8 - BUSCAR POR NUMERO DE AUTORES
+def searchByNumberOfAuthors():    
+    buscar= int(input("Ingrese el número de autores que contiene su libro: "))
+    with open("Registros Libros.csv") as file:
+        lectura = csv.reader(file)
+    for  llave,cantidad in list(lectura.items()):
+        if cantidad == buscar:
+            print("El libro ",llave,"CONTIENE",cantidad,"AUTORES")
 
 def run():
     printOptions()
@@ -321,7 +330,7 @@ def run():
     elif command == '7':
         searchBookByAutorEditorialGenre()
     elif command == '8':
-        pass
+        searchByNumberOfAuthors
     elif command == '9':
         updateBook()
     elif command == '10':
