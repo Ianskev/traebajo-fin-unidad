@@ -62,7 +62,43 @@ class Game:
                     pokemon = Pokemon(key,pokedex[key])
                     pokemon.print()
                     print("-----------------------------------------------------------")
+     def _getByShape(self):
 
+        url = "https://pokeapi.co/api/v2/pokemon-shape/"
+        res = requests.get(url)
+        if res.status_code != 200:
+            print("ERROR")
+        else:
+            response = res.json()
+            results = response["results"]
+            shape = dict()
+            for result in results:
+                id = self._extractId(url, result['url'])
+                name = result["name"].capitalize()
+                shape[id] = name
+            print("\nLas Habilidades Pokemon son las siguientes:\n")
+            for key in sorted(shape.keys()):
+                    print(f"{key:<2}: {shape[key]}")
+            try:
+                pk = int(input("\nIngrese una habilidad [id]: "))
+            except:
+                print("ERROR: Debe ingresar un número!")
+            else:
+                url = f"https://pokeapi.co/api/v2/pokemon-shape/{pk}/"
+                res = requests.get(url)
+                if res.status_code != 200:
+                    print("ERROR: Tipo no encontrado")
+                else:
+                    response = res.json()
+                    pokemons = response["pokemon_species"]
+                    print("\nPokemons:\n")
+                    for pokemon in pokemons:
+                        id = self._extractId("https://pokeapi.co/api/v2/pokemon-species/", pokemon['url'])
+                        name = pokemon['name']
+                        if id < 1200:
+                            pokemon = Pokemon(id, name)
+                            pokemon.print()
+                            print("-----------------------------------------------------------")
     def _getPokemonByType(self):
 
         url = "https://pokeapi.co/api/v2/type/"
