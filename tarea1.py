@@ -48,7 +48,20 @@ class Book:
         self.__ISBN = ISBN
         self.__editorial = editorial
         self.__autors = autors
-        
+
+    def get_id(self):
+        return self.__id
+    def get_title(self):
+        return self.__title
+    def get_genre(self):
+        return self.__genre
+    def get_ISBN(self):
+        return self.__ISBN
+    def get_editorial(self):
+        return self.__editorial
+    def get_autors(self):
+        return self.__autors
+
 def repeatOptions():
     dato = input("\n¿Desea volver al menu? (S: Sí - N: No):  ").lower()
     if dato == 's':
@@ -140,6 +153,57 @@ def searchByIsbnOrTitle():
         repeatOptions()
 
 
+def updateBook():
+    id2 = input('Ingrese el ID del libro a actualizar: ')
+    with open("Registros Libros.csv", 'r') as file:
+        reader = csv.reader(file)
+        data = [line for line in reader]
+        for row in data:
+            if row[0] == id2:
+                data.remove(row)
+        title = input('Ingrese el titulo del libro: ').title()
+        genre = input('Insertar el genero del libro: ').title()
+        ISBN = input('Ingrese el código ISBN: ').title()
+        editorial = input('Ingrese el editorial: ').title()
+        autores = input('Ingrese el autor(es): ').title()
+        libronuevo = []
+
+        libro = Book(id2, title, genre, ISBN, editorial, autores)
+
+        libronuevo.append(libro.get_id())
+        libronuevo.append(libro.get_title())
+        libronuevo.append(libro.get_genre())
+        libronuevo.append(libro.get_ISBN())
+        libronuevo.append(libro.get_editorial())
+        libronuevo.append(libro.get_autors())
+        data.append(libronuevo)
+        data.sort()
+
+    with open("Registros Libros.csv", 'w', newline='') as file:
+        w = csv.writer(file)
+        w.writerows(data)
+
+        # print(data)
+        # next(reader)4
+
+    print("Se ha modificado el libro de ID " + id2 + " correctamente")
+
+    repeatOptions()
+
+
+def SaveBooks():
+    with open("Registros Libros.csv", 'r') as file:
+        reader = csv.reader(file)
+        data = [line for line in reader]
+        namefile = input('Ingrese el nombre del archivo a guardar (ejemplo: libros.txt o libros.csv''): ')
+    with open(namefile, 'w') as f:
+        f.write("ID, Título, Género, ISBN, Editorial, Autor(es)\n")
+        for list in data:
+            f.write("\n")
+            f.write(','.join(list))
+
+    repeatOptions()
+
 def run():
     printOptions()
     command = input(BOLD+"Selecciona una opción: "+RESET)
@@ -161,7 +225,26 @@ def run():
     elif command == '3':
         addNewBook()
     elif command == '4':
-        pass
+        try:
+            with open("Registros Libros.csv") as file:
+                newFile = csv.reader(file)
+                data = [i for i in newFile]
+
+            with open("Registros Libros.csv", "w", newline='') as file:
+                Id = input(BOLD + "\nIngrese el ID del libro que desea eliminar: " + RESET)
+                new = csv.writer(file)
+                for r in data:
+                    for c in r:
+                        if c != Id:
+                            new.writerow(r)
+                        break
+                file.close()
+        except:
+            print("\nNo Hay datos en el csv.")
+        else:
+            print("\nEliminado correctamente.")
+            repeatOptions()
+
     elif command == '5':
         searchByIsbnOrTitle()
     elif command == '6':
@@ -171,9 +254,9 @@ def run():
     elif command == '8':
         pass
     elif command == '9':
-        pass
+        updateBook()
     elif command == '10':
-        pass
+        SaveBooks()
     elif command == '11':
         os._exit(1)
     else:
