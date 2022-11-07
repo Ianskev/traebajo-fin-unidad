@@ -29,7 +29,7 @@ class Game:
             elif n==2:
                 self._getByShape()
             elif n==3:
-                pass
+                self._getPokemonByAbility()
             elif n==4:
                 self._getPokemonByHabitat()
             elif n==5:
@@ -139,6 +139,45 @@ class Game:
                             pokemon = Pokemon(id, name)
                             pokemon.print()
                             print("-----------------------------------------------------------")
+    
+    def _getPokemonByAbility(self):
+        url = "https://pokeapi.co/api/v2/ability/"
+        res = requests.get(url+"?limit=327&offset=0")
+        if res.status_code != 200:
+            print("ERROR")
+        else:
+            response = res.json()
+            results = response["results"]
+            ability = dict()
+            for result in results:
+                id = self._extractId(url, result['url'])
+                name = result["name"].capitalize()
+                ability[id] = name
+            print("\nLas Habilidades Pokemon son las siguientes:\n")
+            for key in sorted(ability.keys()):
+                    print(f"{key:<3}: {ability[key]}")
+            try:
+                pk = int(input("\nIngrese una habilidad [id]: "))
+            except:
+                print("ERROR: Debe ingresar un número!")
+            else:
+                url = f"https://pokeapi.co/api/v2/ability/{pk}/"
+                res = requests.get(url)
+                if res.status_code != 200:
+                    print("ERROR: Tipo no encontrado")
+                else:
+                    response = res.json()
+                    pokemons = response["pokemon"]
+                    print("\nPokemons:\n")
+                    for pokemon in pokemons:
+                        pokemon = pokemon['pokemon']
+                        id = self._extractId("https://pokeapi.co/api/v2/pokemon/", pokemon['url'])
+                        name = pokemon['name']
+                        if id < 1200:
+                            pokemon = Pokemon(id, name)
+                            pokemon.print()
+                            print("-----------------------------------------------------------")
+
 
     def _getPokemonByHabitat(self):
 
@@ -210,3 +249,6 @@ class Pokemon:
         for abilitie in self._abilities:
             print(f"\t{abilitie}")
         print(f"ImageURL: {self._image}")
+
+game = Game()
+game.run()
