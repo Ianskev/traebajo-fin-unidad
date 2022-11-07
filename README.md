@@ -32,6 +32,6 @@ Escribir un programa que tenga las siguientes opciones:
 Nota: listar pokemons involucra: nombre, habilidad y URL de la imagen
 
 # Integrantes
-* Ian Kevin Condori Flores
-* Omar Stalyn Susanibar Valderrama
-* Johann Condori Cajchaya
+* **Ian Kevin Condori Flores**
+* **Omar Stalyn Susanibar Valderrama**
+* **Johann Condori Cajchaya**
