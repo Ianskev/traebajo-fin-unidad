@@ -204,6 +204,75 @@ def SaveBooks():
 
     repeatOptions()
 
+
+# Opcion6
+def sortOutBooksByTitle():
+    lista_id = []
+    lista_titulo = []
+    lista_genero = []
+    lista_ISBN = []
+    lista_editorial = []
+    lista_autores = []
+    print(BLUE + "\nOrdenado por titulo: " + RESET)
+    with open("Registros Libros.csv", 'r') as file:
+        lista_ordenada = []
+        reader = csv.reader(file)
+        for i in reader:
+            id, title, genre, ISBN, editorial, autores, *a = i
+        lista_titulo.sort()
+        for count, valor in enumerate(zip(lista_titulo), start=1):
+            print(count, " - ", *valor)
+
+    repeatOptions()
+
+
+# Opcion7
+# Buscar libros por autor, editorial o género.
+# Se deben sugerir las opciones y listar los resultados.
+def searchBookByAutorEditorialGenre():
+    print("1) Autor\n2) Editorial\n3) Genero")
+    opcion = input("Elige una opcion:  ")
+
+    if opcion == '1':
+        autorx = input('Ingresar el AUTOR del libro: ')
+        with open("Registros Libros.csv", 'r') as file:
+            reader = csv.reader(file)
+            data = [line for line in reader]
+            for row in data:
+                if row[5] == autorx:
+                    data.append(row)
+                    print(f"AUTOR: {autorx}")
+                    print("\nLibro:")
+                    print(*row)
+                    break
+
+    if opcion == '2':
+        editorialx = input('Ingresar la EDITORIAL del libro: ')
+        with open("Registros Libros.csv", 'r') as file:
+            reader = csv.reader(file)
+            data = [line for line in reader]
+            for row in data:
+                if row[4] == editorialx:
+                    data.append(row)
+                    print(f"EDITORIAL: {editorialx}")
+                    print("\nLibro:")
+                    print(*row)
+                    break
+
+    if opcion == '3':
+        generox = input('Ingresar el GENERO del libro: ')
+        with open("Registros Libros.csv", 'r') as file:
+            reader = csv.reader(file)
+            data = [line for line in reader]
+            for row in data:
+                if row[2] == generox:
+                    data.append(row)
+                    print(f"GENERO: {generox}")
+                    print("\nLibro:")
+                    print(*row)
+                    break
+    repeatOptions()
+
 def run():
     printOptions()
     command = input(BOLD+"Selecciona una opción: "+RESET)
@@ -248,9 +317,9 @@ def run():
     elif command == '5':
         searchByIsbnOrTitle()
     elif command == '6':
-        pass
+        sortOutBooksByTitle()
     elif command == '7':
-        pass
+        searchBookByAutorEditorialGenre()
     elif command == '8':
         pass
     elif command == '9':
