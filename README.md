@@ -2,10 +2,9 @@
 
 Debe desarrollar las siguientes 2 tareas en un repositorio de github. Cada tarea es un archivo .py
 
+## Tarea 1
 Se tiene la clase Libro con los siguientes atributos: id, título, género, ISBN, editorial y autor(es). Considerar que un libro puede tener varios autores.
-
 Se solicita escribir un programa en Python que permita registrar libros. Debe utilizar: colecciones (listas, tuplas, etc), funciones y clases de Python.
-
 Dicho programa debe tener un menu (a interactuar en la línea de comando) para:
 
 * Opción 1: Leer archivo de disco duro (.txt o csv) que cargue 3 libros.
@@ -24,4 +23,4 @@ Nota: listar libros involucra: título, género, ISBN, editorial y autor(es)
 
 # Integrantes
 * Ian Kevin Condori Flores
-
+* Omar Stalyn Susanibar Valderrama
