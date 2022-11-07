@@ -90,12 +90,13 @@ def addNewBook():
     with open("Registros Libros.csv",'a',newline='\n') as file:
         print('CREAR REGISTRO DE LIBRO')
         print('*' * 50)
-        Id = input("\nID: ").upper()
-        title = input("Title: ").capitalize()
-        genre = input("Genre: ").capitalize()
+        Id = input("\nIngrese ID: ").upper()
+        title = input("Ingrese Titulo: ").capitalize()
+        genre = input("Ingrese Genero: ").capitalize()
         isbn = input("ISBN: ")
-        editorial = input("Editorial: ").title()
-        author = input("Author(s): ").title()
+        editorial = input("Ingrese Editorial: ").title()
+        print(RED+"Si son 2 o más autores, añada una coma:\nejm: Autor1, Autor2, Autor3"+RESET)
+        author = input("Ingrese Autor(es): ").title()
         add_list = [Id, title, genre, isbn, editorial, author]
         
         add = csv.writer(file) 
@@ -276,11 +277,21 @@ def searchBookByAutorEditorialGenre():
 #OPCION 8 - BUSCAR POR NUMERO DE AUTORES
 def searchByNumberOfAuthors():    
     buscar= int(input("Ingrese el número de autores que contiene su libro: "))
-    with open("Registros Libros.csv") as file:
+    with open("Registros Libros.csv",'r') as file:
         lectura = csv.reader(file)
-    for  llave,cantidad in list(lectura.items()):
-        if cantidad == buscar:
-            print("El libro ",llave,"CONTIENE",cantidad,"AUTORES")
+        next(lectura)
+        showHeader()
+        for id, title, genre,isbn, editorial, autor in lectura:
+            autor_convert =autor.split(sep=',')
+            if(buscar == len(autor_convert)):
+                print(f"| {id:5}| {title:40}| {genre:10}| {isbn:20}| {editorial:25}| {autor:23}|")
+        
+        salida =int(input("\nIngrese 1: Si quiere volve a intentarlo | Ingrese 2: Para volver al menu principal: "))
+        if salida == 1:
+            searchByNumberOfAuthors()
+        elif(salida == 2):
+            repeatOptions()
+
 
 def run():
     printOptions()
@@ -330,7 +341,7 @@ def run():
     elif command == '7':
         searchBookByAutorEditorialGenre()
     elif command == '8':
-        searchByNumberOfAuthors
+        searchByNumberOfAuthors()
     elif command == '9':
         updateBook()
     elif command == '10':
