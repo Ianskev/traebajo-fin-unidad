@@ -48,3 +48,43 @@ class Book:
         self.__ISBN = ISBN
         self.__editorial = editorial
         self.__autors = autors
+        
+def repeatOptions():
+    dato = input("\n¿Desea volver al menu? (S: Sí - N: No):  ").lower()
+    if dato == 's':
+        run()
+    else:
+        os._exit(0)
+def run():
+    printOptions()
+    command = input(BOLD+"Selecciona una opción: "+RESET)
+
+    if command == '1':
+        pass
+    elif command == '2':
+        pass
+    elif command == '3':
+        pass
+    elif command == '4':
+        pass
+    elif command == '5':
+        pass
+    elif command == '6':
+        pass
+    elif command == '7':
+        pass
+    elif command == '8':
+        pass
+    elif command == '9':
+        pass
+    elif command == '10':
+        pass
+    elif command == '11':
+        os._exit(1)
+    else:
+        print('Opcion inválida, ingrese un numero del 1 al 11')
+        time.sleep(2)
+        run()
+
+if __name__ == "__main__":
+    run()
