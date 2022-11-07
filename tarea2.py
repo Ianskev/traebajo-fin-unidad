@@ -140,6 +140,7 @@ class Game:
                             pokemon.print()
                             print("-----------------------------------------------------------")
     
+    #option3
     def _getPokemonByAbility(self):
         url = "https://pokeapi.co/api/v2/ability/"
         res = requests.get(url+"?limit=327&offset=0")
