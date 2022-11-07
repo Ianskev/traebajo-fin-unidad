@@ -27,7 +27,7 @@ class Game:
             if n == 1:
                 self._getNationalPokedexByGeneration()
             elif n==2:
-                pass
+                self._getByShape()
             elif n==3:
                 pass
             elif n==4:
@@ -62,7 +62,8 @@ class Game:
                     pokemon = Pokemon(key,pokedex[key])
                     pokemon.print()
                     print("-----------------------------------------------------------")
-     def _getByShape(self):
+
+    def _getByShape(self):
 
         url = "https://pokeapi.co/api/v2/pokemon-shape/"
         res = requests.get(url)
